@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,156 +6,142 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  color: white;
-  overflow-x: hidden;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', cursive;
+    background: linear-gradient(to right, #f8cdda, #f5b7b1);
+    text-align: center;
+    color: #4a235a;
 }
 
-/* Popup */
-#popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.popup-content {
-  background: white;
-  color: #ff4d6d;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 300px;
-}
-
-.popup-content button {
-  margin-top: 15px;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 15px;
-  background: #ff4d6d;
-  color: white;
-  cursor: pointer;
+.container {
+    padding: 30px;
+    position: relative;
+    z-index: 2;
 }
 
 h1 {
-  margin-top: 80px;
-  font-size: 3em;
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
 p {
-  font-size: 1.3em;
-  max-width: 650px;
-  margin: auto;
-  line-height: 1.6;
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: auto;
 }
 
+img {
+    max-width: 300px;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    border: none;
+    background: #e91e63;
+    color: white;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Falling Hearts */
 .heart {
-  position: fixed;
-  color: red;
-  font-size: 20px;
-  animation: float 6s linear infinite;
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear infinite;
 }
 
-@keyframes float {
-  0% {transform: translateY(100vh);}
-  100% {transform: translateY(-10vh);}
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
 }
 
-.gallery img {
-  width: 200px;
-  margin: 10px;
-  border-radius: 15px;
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 10;
 }
 
-button.main-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  color: #ff4d6d;
-  font-size: 1em;
-  cursor: pointer;
+.popup h2 {
+    color: #e91e63;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Surprise Popup -->
-<div id="popup">
-  <div class="popup-content">
-    <h2>🎉 Surprise! 🎉</h2>
-    <p>
-      Happy Birthday my love ❤️<br>
-      You are my sunshine ☀️<br>
-      Click below for your surprise 💖
-    </p>
-    <button onclick="closePopup()">Open My Heart 💌</button>
-  </div>
-</div>
+<div class="container">
 
 <h1>Happy Birthday My Love ❤️</h1>
-<h2>ASHISH</h2>
+
+<!-- ✅ YOUR IMAGE -->
 
 <p>
-You are my sunshine on my darkest days ☀️  
-My happiness, my peace, and my forever.  
-I’m so lucky to have you in my life.  
-Happy Birthday, my love 💖
+My dearest love,<br><br>
+You are my sunshine, my happiness, and my greatest blessing 🌞  
+Every moment with you feels like a beautiful dream I never want to wake up from.  
+<br><br>
+Thank you for filling my life with love, laughter, and endless warmth.  
+<br><br>
+On your special day, I just want to say…  
+<br><br>
+<b>I love you more than words can ever express ❤️</b>  
+<br><br>
+Forever yours 💕
 </p>
 
-<button class="main-btn" onclick="playMusic()">Play Our Song 🎵</button>
+<button onclick="showPopup()">Click for Surprise 🎁</button>
 
-<audio id="bgMusic" loop>
-  <source src="sunshine.mp3" type="audio/mpeg">
-</audio>
-
-<h2>Our Memories 📸</h2>
-<div class="gallery">
-  <img src="birthday-photo.jpg" alt="Ashish and me" />
 </div>
 
-<h2>Forever Yours 💌</h2>
+<!-- Popup -->
+<div class="popup" id="popup">
+<h2>Surprise ❤️</h2>
 <p>
-No matter what happens, I promise to stand beside you always.  
-You are my today and all of my tomorrows ❤️  
-I love you endlessly.
+You are the best thing that ever happened to me 💖<br><br>
+Happy Birthday once again, my love!
 </p>
+<button onclick="closePopup()">Close</button>
+</div>
 
 <script>
+function showPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
 function closePopup() {
-  document.getElementById("popup").style.display = "none";
+    document.getElementById("popup").style.display = "none";
 }
 
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-  document.body.appendChild(heart);
+/* Falling Hearts */
+function createHearts() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
+    setTimeout(() => heart.remove(), 5000);
 }
 
-setInterval(createHeart, 300);
-
-function playMusic() {
-  document.getElementById("bgMusic").play();
-}
+setInterval(createHearts, 300);
 </script>
 
 </body>
